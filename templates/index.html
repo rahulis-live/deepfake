@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Video</title>
+    <style>
+        body {
+            background-image: url("{{ url_for('static', filename='0_1fOKSM9na9IBROxm.gif') }}");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            color: white; /* Set text color to white */
+            text-align: center; /* Center align text */
+        }
+        h1 {
+            font-size: 36px; /* Increase font size of h1 */
+        }
+        form {
+            display: inline-block; /* Display the form inline */
+            vertical-align: top; /* Align form to the top */
+            margin-top: 20px; /* Add some space at the top */
+        }
+        input[type="file"], button[type="submit"] {
+            font-size: 18px; /* Increase font size of input and button */
+            padding: 10px 20px; /* Increase padding of input and button */
+            background-color: #007bff; /* Change background color of button */
+            color: white; /* Set text color to white */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        input[type="file"] {
+            margin-right: 10px; /* Add some space between input and button */
+        }
+        #video-container {
+            display: inline-block; /* Display the video container inline */
+            vertical-align: top; /* Align video container to the top */
+            margin-top: 20px; /* Add some space at the top */
+        }
+        #video-preview {
+            width: 300px; /* Set width of video preview box */
+            height: auto; /* Automatically adjust height */
+            border: 1px solid white; /* Add border to video preview box */
+        }
+    </style>
+</head>
+<body>
+    <h1>Upload Video</h1>
+    <form id="upload-form" method="POST" enctype="multipart/form-data">
+        <input id="file-input" type="file" name="file" accept="video/*">
+        <button type="submit">Upload</button>
+    </form>
+    <div id="video-container">
+        <video id="video-preview" controls>
+            <source id="video-source" src="" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+
+    <script>
+        document.getElementById('file-input').addEventListener('change', function(event) {
+            var file = event.target.files[0];
+            var videoPreview = document.getElementById('video-preview');
+            var videoSource = document.getElementById('video-source');
+            videoSource.src = URL.createObjectURL(file);
+            videoPreview.load();
+        });
+    </script>
+</body>
+</html>
